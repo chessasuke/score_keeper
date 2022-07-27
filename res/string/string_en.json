@@ -1,0 +1,17 @@
+{
+    "startGame": "Start Game",
+    "unknown":"404!",
+    "appName": "ScoreKeeper",
+    "footerAppbarMenu": "© 2022 ScoreKeeper",
+    "deletePoints":"Delete Points?",
+    "yes": "Yes",
+    "no": "No",
+
+    "changePlayerName" : "Change Player Name",
+    "playerName":"Player Name",
+    "addPoints":"Add Points",
+
+    "target": "Target ",
+    "targetPoints" : "Target Points",
+    "changeTargetPoints" : "Change Target Points"
+}
