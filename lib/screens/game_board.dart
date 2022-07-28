@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:score_keeper/appbar/widgets/custom_appbar.dart';
 import 'package:score_keeper/appbar/widgets/drawer.dart';
@@ -37,7 +38,8 @@ class _GameBoardState extends ConsumerState<GameBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
       child: Scaffold(
         backgroundColor: AppColors.white100,
         appBar: const CustomAppBar(),
@@ -58,7 +60,7 @@ class _GameBoardState extends ConsumerState<GameBoard> {
                   SizedBox(
                     height: screenSize.height -
                         100 -
-                        DisplayProperties.appbarHeight,
+                        DisplayProperties.appbarHeight - DisplayProperties.mainBottomPadding,
                     child: _ListBoardPlayers(
                       screenSize: screenSize,
                       numPlayers: numPlayers,

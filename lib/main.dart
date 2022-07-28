@@ -14,13 +14,15 @@ import 'navigator/router_delegate.dart';
 import 'services/logger/logger.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [SystemUiOverlay.top],
+  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   if (!kIsWeb) {
     runZonedGuarded<Future<void>>(() async {
-      WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform);
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
       FlutterError.onError =
           FirebaseCrashlytics.instance.recordFlutterFatalError;
 
@@ -34,11 +36,6 @@ void main() async {
         (error, stack) => FirebaseCrashlytics.instance
             .recordError(error, stack, fatal: true));
   } else {
-    WidgetsFlutterBinding.ensureInitialized();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-    await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform);
-
     runApp(
       ProviderScope(
         observers: [Logger()],

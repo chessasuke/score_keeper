@@ -17,10 +17,13 @@ class AppName extends StatelessWidget {
       tag: 'appLogo',
       child: SizedBox(
         height: height,
-                  child: SvgPicture.asset(
-          AssetPath.appNameSvgBlackLogo,
-          fit: BoxFit.contain,
-          color: AppColors.black100,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4.0),
+          child: SvgPicture.asset(
+            AssetPath.appNameSvgBlackLogo,
+            fit: BoxFit.contain,
+            color: AppColors.black100,
+          ),
         ),
         // child: ShaderMask(
         //   shaderCallback: (Rect bounds) => const LinearGradient(

@@ -6,6 +6,7 @@ import 'package:score_keeper/board/providers/game_providers.dart';
 import 'package:score_keeper/board/widgets/button_with_input_dialog.dart';
 import 'package:score_keeper/board/widgets/dragable_point.dart';
 import 'package:score_keeper/common/text/text_style.dart';
+import 'package:score_keeper/common/widgets/animated_count.dart';
 import 'package:score_keeper/common/widgets/separator.dart';
 import 'package:score_keeper/generated/i18n.dart';
 
@@ -21,7 +22,6 @@ class PlayerBoard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return SizedBox(
       width: screenSize.width / 2 - 1,
       child: DragTarget<Point>(
@@ -155,10 +155,9 @@ class _PlayerPoints extends ConsumerWidget {
     final points = ref.watch(gameStateProvider.select((value) {
       return value.players[playerIndex].currentPoints;
     }));
-    return AutoSizeText(
-      '$points',
+    return AnimatedCount(
+      count: points,
       style: TextStyles.heading02,
-      maxLines: 1,
     );
   }
 }
