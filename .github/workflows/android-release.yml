@@ -1,11 +1,15 @@
-name: CD Internal-Lane
+name: Android build appbundle
+
+on:
+  push:
+    branches: [ master ]
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    tags:
-      - "internal-v*.*.*" # on every version tag will build a new android artifact example: v3.1.2+6
+# on:
+  # push:
+    # tags:
+    #   - "internal-v*.*.*" # on every version tag will build a new android artifact example: v3.1.2+6
 jobs:
   build:
     name: Build Artifacts and Release
@@ -27,21 +31,21 @@ jobs:
       - name: Decode android/key.properties
         run: echo "${{ secrets.KEY_PROPERTIES_PROD }}" | base64 --decode > android/key.properties
 
-      - uses: olegtarasov/get-tag@v2 # that generate $GIT_TAG_NAME env
-        id: tagName
-        with:
-          tagRegex: 'internal-v([0-9]+.[0-9]+.[0-9]+\+[0-9]+)' # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
-          tagRegexGroup: 1 # Optional. Default is 1.
+      # - uses: olegtarasov/get-tag@v2 # that generate $GIT_TAG_NAME env
+      #   id: tagName
+      #   with:
+      #     tagRegex: 'internal-v([0-9]+.[0-9]+.[0-9]+\+[0-9]+)' # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+      #     tagRegexGroup: 1 # Optional. Default is 1.
 
-      - name: Replace YAML version with tag version
-        run: |
-          sed -i 's/99.99.99+99/'$GIT_TAG_NAME'/g' pubspec.yaml|
-          echo "Tag used version:"$GIT_TAG_NAME
-      - name: Pub Get Packages
-        run: flutter pub get
+      # - name: Replace YAML version with tag version
+      #   run: |
+      #     sed -i 's/99.99.99+99/'$GIT_TAG_NAME'/g' pubspec.yaml|
+      #     echo "Tag used version:"$GIT_TAG_NAME
+      # - name: Pub Get Packages
+      #   run: flutter pub get
 
-      - name: Build APPBUNDLE
-        run: flutter build appbundle --release
+      # - name: Build APPBUNDLE
+      #   run: flutter build appbundle --release
 
   #     - name: Create Github Release
   #       uses: ncipollo/release-action@v1
