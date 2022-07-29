@@ -32,10 +32,8 @@
       #     path: app/build/outputs/
 
 
-name: Build Release App Bundle
-
+name: Build App Bundle
 on: workflow_dispatch
-
 jobs:
   build:
     runs-on: ubuntu-latest
