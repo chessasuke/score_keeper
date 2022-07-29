@@ -36,7 +36,7 @@ name: Build Release App Bundle
 
 on: workflow_dispatch
 
-  jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
