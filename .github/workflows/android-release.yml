@@ -33,7 +33,7 @@
 
 
 name: Build App Bundle
-on: workflow_dispatch
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
