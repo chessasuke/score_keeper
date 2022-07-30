@@ -53,11 +53,11 @@ jobs:
       with:
         name: appbundle
 
-    - name: Release app to internal track
+    - name: Release app to production
       uses: r0adkll/upload-google-play@v1
       with:
         serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
-        packageName: com.chessasuke.scorekeeper
+        packageName: com.chessasuke.score_keeper
         releaseFile: app-release.aab
         # whatsNewDirectory: distribution/whatsnew # changelogs should be in the format whatsnew-en-US
 
