@@ -19,21 +19,11 @@ jobs:
           channel: 'stable'
 
       - name: Download Android keystore
-        # id: android_keystore
-        # uses: timheuer/base64-to-file@v1.0.3
-        # with:
-        #   fileName: key.jks
-        #   encodedString: ${{ secrets.KEYSTORE }}
-
-        run: echo "${{ secrets.KEYSTORE }}" | base64 -di > android/key.jks
-
-      # - name: Get Android Keystore
-      #   env:
-      #       ENCODED_KEYSTORE: ${{ secrets.KEYSTORE }}
-      #   run: |
-      #       TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
-      #       mkdir "${TMP_KEYSTORE_FILE_PATH}"
-      #       echo $ENCODED_KEYSTORE | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.KEYSTORE }}
 
       - name: Create key.properties
         run: |
@@ -45,7 +35,6 @@ jobs:
       - name: Build Android App Bundle
         run: flutter build appbundle
 
-      # Make appbundle downloadable
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
