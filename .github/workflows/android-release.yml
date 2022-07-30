@@ -67,12 +67,15 @@ jobs:
             mkdir "${TMP_KEYSTORE_FILE_PATH}"
             echo $ENCODED_KEYSTORE | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
 
-      - name: Pub Get Packages
-        run: flutter pub get
+      - name: Create key.properties
+        run: |
+          echo "storeFile=${{ steps.android_keystore.outputs.filePath }}" > android/key.properties
+          echo "storePassword=${{ secrets.SIGNING_STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.SIGNING_KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=${{ secrets.SIGNING_KEY_ALIAS }}" >> android/key.properties
 
-      # - name: Build APPBUNDLE
-      #   run: flutter build appbundle --release
-      # - uses: actions/checkout@v2
+      - name: Build Android App Bundle
+        run: flutter build appbundle
 
 
       # - name: set up JDK 1.8
