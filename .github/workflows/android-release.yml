@@ -20,8 +20,7 @@ jobs:
 
       - name: Download Android keystore
         id: android_keystore
-        uses: chessasuke/base64-to-file
-        # uses: timheuer/base64-to-file@v1.0.3
+        uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: key.jks
           encodedString: ${{ secrets.KEYSTORE }}
@@ -41,4 +40,24 @@ jobs:
         with:
           name: appbundle
           path: build/app/outputs/bundle/release
+
+  release:
+    name: Release app to Google Play
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Get appbundle from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: appbundle
+
+    - name: Release app to internal track
+      uses: r0adkll/upload-google-play@v1
+      with:
+        serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
+        packageName: com.chessasuke.scorekeeper
+        releaseFile: app-release.aab
+        # whatsNewDirectory: distribution/whatsnew # changelogs should be in the format whatsnew-en-US
 
