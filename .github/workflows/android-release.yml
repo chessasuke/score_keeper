@@ -54,7 +54,7 @@ jobs:
         name: appbundle
 
     - name: Release app to production
-      uses: r0adkll/upload-google-play@v1
+      uses: r0adkll/upload-google-play@v1.0.17
       with:
         serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
         packageName: com.chessasuke.score_keeper
