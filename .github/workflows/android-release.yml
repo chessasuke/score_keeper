@@ -52,20 +52,20 @@ jobs:
           flutter-version: '3.0.5'
           channel: 'stable'
 
-      # - name: Get Android Keystore
-      #   id: android_keystore
-      #   uses: timheuer/base64-to-file@v1.0.3
-      #   with:
-      #     fileName: key.jks
-      #     encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      - name: Download Android keystore
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.0.3
+        with:
+          fileName: key.jks
+          encodedString: ${{ secrets.KEYSTORE }}
 
-      - name: Get Android Keystore
-        env:
-            ENCODED_KEYSTORE: ${{ secrets.KEYSTORE }}
-        run: |
-            TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
-            mkdir "${TMP_KEYSTORE_FILE_PATH}"
-            echo $ENCODED_KEYSTORE | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
+      # - name: Get Android Keystore
+      #   env:
+      #       ENCODED_KEYSTORE: ${{ secrets.KEYSTORE }}
+      #   run: |
+      #       TMP_KEYSTORE_FILE_PATH="${RUNNER_TEMP}"/keystore
+      #       mkdir "${TMP_KEYSTORE_FILE_PATH}"
+      #       echo $ENCODED_KEYSTORE | base64 -di > "${TMP_KEYSTORE_FILE_PATH}"/your_keystore_file.jks
 
       - name: Create key.properties
         run: |
