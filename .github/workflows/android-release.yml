@@ -1,4 +1,4 @@
-name: Build App Bundle
+name: Android Release
 on: push
 jobs:
   build:
