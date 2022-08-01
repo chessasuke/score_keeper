@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:score_keeper/app_locking/widgets/app_locked_service_consumer.dart';
 import 'package:score_keeper/appbar/widgets/app_name.dart';
 import 'package:score_keeper/board/providers/game_providers.dart';
 import 'package:score_keeper/board/widgets/simple_button.dart';
@@ -25,29 +26,31 @@ class HomeScreen extends ConsumerWidget {
       child: Scaffold(
         backgroundColor: AppColors.white100,
         body: SizedBox.expand(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const AppName(),
-              Column(
-                children: [
-                  const _SetTargetPoints(),
-                  const SizedBox(
-                      height: DisplayProperties.defaultContentPadding),
-                  const _SetNumberOfPlayers(),
-                  const SizedBox(
-                      height: DisplayProperties.defaultContentPadding),
-                  SimpleButton(
-                    onTap: () => _startNewGame(ref),
-                    text: Text(
-                      S.of(context).startGame,
-                      style: TextStyles.heading03
-                          .copyWith(color: AppColors.white100),
+          child: AppLockedServiceConsumer(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const AppName(),
+                Column(
+                  children: [
+                    const _SetTargetPoints(),
+                    const SizedBox(
+                        height: DisplayProperties.defaultContentPadding),
+                    const _SetNumberOfPlayers(),
+                    const SizedBox(
+                        height: DisplayProperties.defaultContentPadding),
+                    SimpleButton(
+                      onTap: () => _startNewGame(ref),
+                      text: Text(
+                        S.of(context).startGame,
+                        style: TextStyles.heading03
+                            .copyWith(color: AppColors.white100),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

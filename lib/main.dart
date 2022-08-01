@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:score_keeper/app_locking/widgets/app_locked_service_consumer.dart';
 import 'package:score_keeper/firebase_options.dart';
 import 'package:score_keeper/generated/i18n.dart';
 import 'navigator/route_parser.dart';
@@ -15,11 +16,11 @@ import 'services/logger/logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.top],
   );
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   if (!kIsWeb) {
     runZonedGuarded<Future<void>>(() async {
@@ -65,17 +66,21 @@ class MyAppState extends ConsumerState<ScoreKeeperApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'ScoreKeeper',
-      routerDelegate: _routerDelegate,
-      routeInformationParser: _routeInformationParser,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      supportedLocales: S.delegate.supportedLocales,
+    return AppLockedServiceConsumer(
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'ScoreKeeper',
+        routerDelegate: _routerDelegate,
+        routeInformationParser: _routeInformationParser,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        // builder: (BuildContext context, _) =>
+        //     AppLockedServiceConsumer(child: _),
+      ),
     );
   }
 }

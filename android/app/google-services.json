@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "943233668729",
+    "project_id": "scorekeeper-e79e8",
+    "storage_bucket": "scorekeeper-e79e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943233668729:android:f26aff16022b77933126a8",
+        "android_client_info": {
+          "package_name": "com.example.score_keeper_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943233668729-d9fla7tav0kc43t6ed5st552a4d5upnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHcNGwPbSe--cJrYUeRfFG1vz6rnziOr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943233668729-d9fla7tav0kc43t6ed5st552a4d5upnk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "943233668729-6afat4ruuj6580sfqtvr3pe64k0fucn7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scoreKeeper"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

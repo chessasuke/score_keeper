@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,19 +49,9 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDlLbmi7t1NDq8M362QjE69c9rk8d2Aa90',
-    appId: '1:943233668729:web:717f43c09eae63fc3126a8',
-    messagingSenderId: '943233668729',
-    projectId: 'scorekeeper-e79e8',
-    authDomain: 'scorekeeper-e79e8.firebaseapp.com',
-    storageBucket: 'scorekeeper-e79e8.appspot.com',
-    measurementId: 'G-7XVZXQFZL9',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBHcNGwPbSe--cJrYUeRfFG1vz6rnziOr4',
-    appId: '1:943233668729:android:f26aff16022b77933126a8',
+    appId: '1:943233668729:android:b74d9bf0628f64783126a8',
     messagingSenderId: '943233668729',
     projectId: 'scorekeeper-e79e8',
     storageBucket: 'scorekeeper-e79e8.appspot.com',
@@ -63,21 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCE21QvAAJ9gfAcAinxZG9pmgxD6vKmMqg',
-    appId: '1:943233668729:ios:aab5200df2ee8ad13126a8',
+    appId: '1:943233668729:ios:81677d2937ebe8653126a8',
     messagingSenderId: '943233668729',
     projectId: 'scorekeeper-e79e8',
     storageBucket: 'scorekeeper-e79e8.appspot.com',
-    iosClientId: '943233668729-gm5avc13ioh8u58ja2jfjasq46njrlvn.apps.googleusercontent.com',
-    iosBundleId: 'com.example.scoreKeeperV2',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCE21QvAAJ9gfAcAinxZG9pmgxD6vKmMqg',
-    appId: '1:943233668729:ios:aab5200df2ee8ad13126a8',
-    messagingSenderId: '943233668729',
-    projectId: 'scorekeeper-e79e8',
-    storageBucket: 'scorekeeper-e79e8.appspot.com',
-    iosClientId: '943233668729-gm5avc13ioh8u58ja2jfjasq46njrlvn.apps.googleusercontent.com',
-    iosBundleId: 'com.example.scoreKeeperV2',
+    iosClientId: '943233668729-6afat4ruuj6580sfqtvr3pe64k0fucn7.apps.googleusercontent.com',
+    iosBundleId: 'com.example.scoreKeeper',
   );
 }
