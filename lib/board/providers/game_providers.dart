@@ -11,7 +11,7 @@ final gameNameTextfieldProvider = StateProvider((ref) {
   return initialValue;
 });
 
-final addPointsTextfieldProvider = StateProvider((ref) => 0);
+final addPointsTextfieldProvider = StateProvider((ref) => 1);
 
 final gameStateProvider =
     StateNotifierProvider<GameStateNotifier, GameState>((ref) {

@@ -9,7 +9,7 @@ class SimpleButton extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final Widget text;
 
   @override

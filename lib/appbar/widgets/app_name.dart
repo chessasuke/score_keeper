@@ -41,11 +41,5 @@ class AppName extends StatelessWidget {
         // ),
       ),
     );
-
-    // AutoSizeText(
-    //   S.of(context).appName,
-    //   style: style ?? TextStyles.display02.copyWith(fontWeight: FontWeights.light),
-    //   maxLines: 1,
-    // );
   }
 }

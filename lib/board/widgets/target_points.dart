@@ -31,7 +31,7 @@ class TargetPoints extends ConsumerWidget {
     );
 
     return ButtonWithInputDialog(
-      onPressed: () => _onPressed(context, ref),
+      onLongPress: () => _onPressed(context, ref),
       onChangedInput: (value) => _onChangedInput(value, ref),
       labelText: S.of(context).targetPoints,
       dialogBtnText: S.of(context).changeTargetPoints,

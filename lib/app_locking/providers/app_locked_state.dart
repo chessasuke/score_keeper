@@ -5,13 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:score_keeper/app_locking/model/app_locked.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:score_keeper/app_locking/model/app_locked_state.dart';
 import 'package:score_keeper/app_locking/providers/app_locked_providers.dart';
-
-enum AppLockedState {
-  regularState,
-  upgradeRequired,
-  maintenanceMode,
-}
 
 class AppLockedStateNotifier extends StateNotifier<AppLockedState> {
   AppLockedStateNotifier(this.ref) : super(AppLockedState.regularState) {

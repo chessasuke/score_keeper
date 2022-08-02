@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:score_keeper/app_locking/firestore/firestore_collection_keys.dart';
 import 'package:score_keeper/app_locking/firestore/firestore_document_keys.dart';
 import 'package:score_keeper/app_locking/model/app_locked.dart';
+import 'package:score_keeper/app_locking/model/app_locked_state.dart';
 import 'package:score_keeper/app_locking/providers/app_locked_state.dart';
 
 final appLockedReferenceProvider = Provider<DocumentReference<AppLocked>>(

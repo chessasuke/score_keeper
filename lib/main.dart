@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:score_keeper/app_locking/widgets/app_locked_service_consumer.dart';
 import 'package:score_keeper/firebase_options.dart';
 import 'package:score_keeper/generated/i18n.dart';
 import 'navigator/route_parser.dart';
@@ -66,21 +65,17 @@ class MyAppState extends ConsumerState<ScoreKeeperApp> {
 
   @override
   Widget build(BuildContext context) {
-    return AppLockedServiceConsumer(
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'ScoreKeeper',
-        routerDelegate: _routerDelegate,
-        routeInformationParser: _routeInformationParser,
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        // builder: (BuildContext context, _) =>
-        //     AppLockedServiceConsumer(child: _),
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      title: 'ScoreKeeper',
+      routerDelegate: _routerDelegate,
+      routeInformationParser: _routeInformationParser,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }

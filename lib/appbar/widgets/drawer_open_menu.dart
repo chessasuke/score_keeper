@@ -11,6 +11,24 @@ import '../providers/app_bar_providers.dart';
 enum DrawerOpenMenuItems {
   home,
   reset,
+  help;
+
+  void onTap(WidgetRef ref) {
+    switch (this) {
+      case DrawerOpenMenuItems.home:
+        ref.read(pageManagerProvider).addPage(RoutePath.home);
+        break;
+      case DrawerOpenMenuItems.reset:
+        ref.refresh(gameStateProvider);
+        break;
+      case DrawerOpenMenuItems.help:
+        ref.refresh(gameStateProvider); 
+        break;
+    }
+    Future.delayed(const Duration(milliseconds: 200),
+        () => ref.read(isDrawerOpenProvider).close());
+  }
+
 }
 
 class DrawerOpenMenu extends StatefulWidget {
@@ -160,7 +178,7 @@ class _MenuItem extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 16),
       child: InkWell(
-        onTap: () => _onTap(ref),
+        onTap: () => item.onTap(ref),
         child: Text(
           item.name.capitalize(),
           textAlign: TextAlign.left,
@@ -171,20 +189,6 @@ class _MenuItem extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  void _onTap(WidgetRef ref) {
-    switch (item) {
-      case DrawerOpenMenuItems.home:
-        ref.read(pageManagerProvider).addPage(RoutePath.home);
-        break;
-      case DrawerOpenMenuItems.reset:
-        ref.refresh(gameStateProvider);
-        break;
-    }
-
-    Future.delayed(const Duration(milliseconds: 200),
-        () => ref.read(isDrawerOpenProvider).close());
   }
 }
 

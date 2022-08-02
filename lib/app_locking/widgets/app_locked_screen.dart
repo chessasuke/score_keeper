@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:score_keeper/app_locking/providers/app_locked_state.dart';
+import 'package:score_keeper/app_locking/model/app_locked_state.dart';
 import 'package:score_keeper/app_locking/widgets/app_locked_screen_keys.dart';
 import 'package:score_keeper/common/constants/app_colors.dart';
 import 'package:score_keeper/common/constants/asset_path.dart';
@@ -22,18 +21,15 @@ class AppLockedScreen extends StatefulWidget {
 }
 
 class AppLockedScreenState extends State<AppLockedScreen> {
-  // final RemoteConfigService _remoteConfig = locator<RemoteConfigService>();
 
-  // late final String title;
-  // late final String message;
-  // late final int maintenanceTimeEstimation;
+  late final String title;
+  late final String message;
 
   @override
   void initState() {
     super.initState();
-    // title = _remoteConfig.maintenanceScreenTitle;
-    // message = _remoteConfig.maintenanceScreenMessage;
-    // maintenanceTimeEstimation = _remoteConfig.maintenanceTimeEstimationHours;
+    title = widget.appLockedState.getTitle();
+    message = widget.appLockedState.getDescription();
   }
 
   @override
@@ -44,36 +40,14 @@ class AppLockedScreenState extends State<AppLockedScreen> {
         child: SafeArea(
           child: UnclosableMessageScreen(
             title: Text(
-              'Some Title',
-              // title.isEmpty ? 'Some Title' : title,
-              style: TextStyles.display02.copyWith(color: AppColors.black100),
+              title,
+              style: TextStyles.display02.copyWith(color: AppColors.white100),
               key: AppLockedScreenKeys.title,
             ),
             description: RichText(
               text: TextSpan(
-                text: 'Some DESC',
-                // text: message.isEmpty ? 'Some DESC' : message,
-                style: TextStyles.body01.copyWith(color: AppColors.black100),
-                // children: <TextSpan>[
-                // if (maintenanceTimeEstimation > 0)
-                //   TextSpan(
-                //     text: '\n\n${S.of(context).maintenanceScreenEstimatedCompletionMessage}',
-                //     style: TextStyles.body02.copyWith(
-                //       color: AppColors.grayNeutral300
-                //     ),
-                //   ),
-                // if (maintenanceTimeEstimation > 0)
-                //   TextSpan(
-                //     text: maintenanceTimeEstimation == 1
-                //         ? S.of(context).maintenanceScreenEstimatedTimeOneHour
-                //         : S.of(context).maintenanceScreenEstimatedTimePlural(
-                //               Misc.intToText(maintenanceTimeEstimation).toUpperCase(),
-                //             ),
-                //     style: TextStyles.caption01.copyWith(
-                //       color: EnzoColors.secondary100,
-                //     ),
-                //   ),
-                // ],
+                text: message,
+                style: TextStyles.body01.copyWith(color: AppColors.white100),
               ),
               key: AppLockedScreenKeys.description,
             ),
