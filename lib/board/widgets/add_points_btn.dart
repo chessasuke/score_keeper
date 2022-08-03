@@ -18,8 +18,8 @@ class AddPointsBtn extends ConsumerWidget {
 
     return ButtonWithInputDialog(
       initialValue: initialValue.toString(),
-      onTap: () => _increment(context, ref),
-      onLongPress: () => _addPoints(context, ref),
+      onTap: () => _addPoints(context, ref),
+      onLongPress: () => _increment(context, ref),
       onChangedInput: (value) => _onChangedInput(ref, value),
       dialogBtnText: S.of(context).addPoints,
       child: const Icon(Icons.add),

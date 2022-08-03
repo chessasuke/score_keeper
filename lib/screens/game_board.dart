@@ -1,3 +1,4 @@
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:score_keeper/appbar/widgets/custom_appbar.dart';
@@ -60,7 +61,8 @@ class _GameBoardState extends ConsumerState<GameBoard> {
                   SizedBox(
                     height: screenSize.height -
                         100 -
-                        DisplayProperties.appbarHeight - DisplayProperties.mainBottomPadding,
+                        DisplayProperties.appbarHeight -
+                        DisplayProperties.mainBottomPadding,
                     child: _ListBoardPlayers(
                       screenSize: screenSize,
                       numPlayers: numPlayers,

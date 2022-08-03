@@ -22,7 +22,7 @@ class PlayerName extends ConsumerWidget {
       ),
     );
     return ButtonWithInputDialog(
-      onLongPress: () => _onPressed(context, ref, playerIndex),
+      onTap: () => _onPressed(context, ref, playerIndex),
       onChangedInput: (value) => _onChangedInput(value, ref),
       dialogBtnText: S.of(context).changePlayerName,
       labelText: S.of(context).playerName,

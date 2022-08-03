@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:score_keeper/board/providers/game_providers.dart';
+import 'package:score_keeper/common/constants/display_properties.dart';
+import 'package:score_keeper/common/text/text_style.dart';
 import 'package:score_keeper/common/utils/extensions.dart';
 import 'package:score_keeper/generated/i18n.dart';
 import 'package:score_keeper/navigator/page_manager.dart';
@@ -10,8 +12,8 @@ import '../providers/app_bar_providers.dart';
 
 enum DrawerOpenMenuItems {
   home,
-  reset,
-  help;
+  reset;
+  // help;
 
   void onTap(WidgetRef ref) {
     switch (this) {
@@ -21,14 +23,24 @@ enum DrawerOpenMenuItems {
       case DrawerOpenMenuItems.reset:
         ref.refresh(gameStateProvider);
         break;
-      case DrawerOpenMenuItems.help:
-        ref.refresh(gameStateProvider); 
-        break;
+      // case DrawerOpenMenuItems.help:
+      //   ref.refresh(gameStateProvider);
+      //   break;
     }
     Future.delayed(const Duration(milliseconds: 200),
         () => ref.read(isDrawerOpenProvider).close());
   }
 
+  IconData getIcon() {
+    switch (this) {
+      case DrawerOpenMenuItems.home:
+        return Icons.home;
+      case DrawerOpenMenuItems.reset:
+        return Icons.restore_outlined;
+      // case DrawerOpenMenuItems.help:
+      //   return Icons.help;
+    }
+  }
 }
 
 class DrawerOpenMenu extends StatefulWidget {
@@ -176,16 +188,26 @@ class _MenuItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 16),
+      padding: const EdgeInsets.symmetric(
+        horizontal: DisplayProperties.mainTopPadding,
+        vertical: DisplayProperties.defaultContentPadding,
+      ),
       child: InkWell(
         onTap: () => item.onTap(ref),
-        child: Text(
-          item.name.capitalize(),
-          textAlign: TextAlign.left,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-          ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: DisplayProperties.defaultContentPadding),
+              child: Icon(item.getIcon(), size: TextStyles.heading02FontSize),
+            ),
+            Text(
+              item.name.capitalize(),
+              textAlign: TextAlign.left,
+              style: TextStyles.heading02,
+            ),
+          ],
         ),
       ),
     );

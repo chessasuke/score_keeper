@@ -32,6 +32,7 @@ dependencies:
   firebase_crashlytics: ^2.8.5
   firebase_core: ^1.19.2
   cloud_firestore: ^3.4.2
+  feature_discovery: ^0.14.1
   
 
 

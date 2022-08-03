@@ -1,5 +1,7 @@
 // DO NOT EDIT. This is code generated via package:gen_lang/generate.dart
 
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:async';
 
 import 'package:intl/intl.dart';

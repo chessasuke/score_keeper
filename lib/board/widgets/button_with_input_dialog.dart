@@ -8,12 +8,12 @@ import 'package:score_keeper/common/widgets/basic_text_field.dart';
 class ButtonWithInputDialog extends StatelessWidget {
   const ButtonWithInputDialog({
     required this.child,
-    required this.onLongPress,
     required this.onChangedInput,
     required this.dialogBtnText,
     this.labelText,
     this.initialValue,
     this.onTap,
+    this.onLongPress,
     Key? key,
   }) : super(key: key);
 
@@ -28,15 +28,15 @@ class ButtonWithInputDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      onLongPress: () => showDialog(
+      onLongPress: onLongPress,
+      onTap: () => showDialog(
         context: context,
         builder: (context) => _DialogWithInput(
           initialValue: initialValue ?? '',
           text: dialogBtnText,
           labelText: labelText ?? '',
           onChangedInput: onChangedInput,
-          onPressed: onLongPress,
+          onPressed: onTap,
         ),
       ),
       child: child,

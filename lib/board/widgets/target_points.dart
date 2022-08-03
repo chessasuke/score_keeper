@@ -31,12 +31,12 @@ class TargetPoints extends ConsumerWidget {
     );
 
     return ButtonWithInputDialog(
-      onLongPress: () => _onPressed(context, ref),
+      onTap: () => _onPressed(context, ref),
       onChangedInput: (value) => _onChangedInput(value, ref),
       labelText: S.of(context).targetPoints,
       dialogBtnText: S.of(context).changeTargetPoints,
       initialValue: gameTargetPoints.toString(),
-      child: TargetPointsText(gameTargetPoints: '$gameTargetPoints'),
+      child: _TargetPointsText(gameTargetPoints: '$gameTargetPoints'),
     );
   }
 
@@ -62,8 +62,8 @@ class TargetPoints extends ConsumerWidget {
   }
 }
 
-class TargetPointsText extends StatelessWidget {
-  const TargetPointsText({
+class _TargetPointsText extends StatelessWidget {
+  const _TargetPointsText({
     required this.gameTargetPoints,
     Key? key,
   }) : super(key: key);

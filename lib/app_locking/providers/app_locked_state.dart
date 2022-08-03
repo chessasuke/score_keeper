@@ -19,13 +19,9 @@ class AppLockedStateNotifier extends StateNotifier<AppLockedState> {
   late StreamSubscription<DocumentSnapshot<AppLocked>> _appLockedSubscription;
 
   void _onAppLockedSubscription(DocumentSnapshot<AppLocked> snapshot) async {
-    print('=== snapshot _onAppLockedSubscription: $snapshot');
-
     if (snapshot.exists) {
-      print('=== data: ${snapshot.data()}');
       final data = snapshot.data()!;
       if (data.isDown) {
-        print('=== Maintenance Mode');
         state = AppLockedState.maintenanceMode;
       } else {
         final int minVersionNumber = Platform.isIOS ? data.ios : data.android;
@@ -39,16 +35,10 @@ class AppLockedStateNotifier extends StateNotifier<AppLockedState> {
   Future<void> _verifyAppVersion(int minVersionNumber) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     final deviceVersion = int.tryParse(packageInfo.buildNumber) ?? -1;
-
-    print('=== deviceVersion: $deviceVersion | minVersionNumber: $minVersionNumber');
-
     final bool isNotValidVersion = minVersionNumber > deviceVersion ;
-
     if (isNotValidVersion) {
-      print('=== Upgrade Required');
       state = AppLockedState.upgradeRequired;
     } else {
-      print('=== No App Locked');
       resetState();
     }
   }
